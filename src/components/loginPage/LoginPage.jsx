@@ -162,12 +162,9 @@ const LoginPage = () => {
 					>
 						{({
 							values,
-							errors,
-							touched,
 							handleBlur,
 							handleChange,
 							handleSubmit,
-							setFieldValue,
 							resetForm,
 						}) => (
 							<form
@@ -245,8 +242,6 @@ const LoginPage = () => {
 							>
 								{({
 									values,
-									errors,
-									touched,
 									handleBlur,
 									handleChange,
 									handleSubmit,

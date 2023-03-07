@@ -12,6 +12,7 @@ import axios from "axios";
 const EditProfile = ({ user, setShowEdit }) => {
 	const dispatch = useDispatch();
 	const token = useSelector((state) => state.token);
+	const [loading, setLoading] = useState(false);
 
 	const initialValues = {
 		firstName: user.firstName,
@@ -23,7 +24,6 @@ const EditProfile = ({ user, setShowEdit }) => {
 		facebook: user.facebook,
 		twitter: user.twitter,
 	};
-	const [loading, setLoading] = useState(false);
 
 	const handleEditUser = async (values) => {
 		setLoading(true);
