@@ -58,7 +58,7 @@ const MyPost = ({ setNewPostLoading, isProfile }) => {
 
 				try {
 					const posts = await axios.post(
-						"https://smashbook-server.onrender.com/posts",
+						"https://smashbook-server.vercel.app/posts",
 						formData,
 						{
 							headers: {

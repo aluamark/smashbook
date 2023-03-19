@@ -18,7 +18,7 @@ const Posts = ({ isProfile }) => {
 	const getUserPosts = async () => {
 		setLoading(true);
 		const posts = await axios.get(
-			`https://smashbook-server.onrender.com/posts/${userId}`,
+			`https://smashbook-server.vercel.app/posts/${userId}`,
 			{
 				headers: {
 					Authorization: `Bearer ${token}`,
@@ -33,7 +33,7 @@ const Posts = ({ isProfile }) => {
 	const getPosts = async () => {
 		setLoading(true);
 		const posts = await axios.get(
-			"https://smashbook-server.onrender.com/posts/all",
+			"https://smashbook-server.vercel.app/posts/all",
 			{
 				headers: {
 					Authorization: `Bearer ${token}`,

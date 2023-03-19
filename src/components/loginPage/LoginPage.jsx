@@ -81,7 +81,7 @@ const LoginPage = () => {
 
 		try {
 			const response = await axios
-				.post("https://smashbook-server.onrender.com/auth/login", formData, {
+				.post("https://smashbook-server.vercel.app/auth/login", formData, {
 					headers: { "Content-Type": "application/json" },
 				})
 				.catch((error) => {
@@ -114,7 +114,7 @@ const LoginPage = () => {
 
 		try {
 			const response = await axios
-				.post("https://smashbook-server.onrender.com/auth/register", formData)
+				.post("https://smashbook-server.vercel.app/auth/register", formData)
 				.catch((error) => {
 					return error.response.data;
 				});

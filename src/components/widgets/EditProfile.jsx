@@ -47,7 +47,7 @@ const EditProfile = ({ user, setShowEdit }) => {
 		};
 
 		const response = fetch(
-			"https://smashbook-server.onrender.com/users/updateUser",
+			"https://smashbook-server.vercel.app/users/updateUser",
 			requestOptions
 		)
 			.then((response) => response.json())
@@ -61,7 +61,7 @@ const EditProfile = ({ user, setShowEdit }) => {
 		dispatch(setUpdatedUser(data));
 
 		const friendsResponse = await axios.get(
-			`https://smashbook-server.onrender.com/users/${user._id}/friends`,
+			`https://smashbook-server.vercel.app/users/${user._id}/friends`,
 			{
 				headers: { Authorization: `Bearer ${token}` },
 			}

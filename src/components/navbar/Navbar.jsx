@@ -33,7 +33,7 @@ const Navbar = () => {
 		try {
 			if (!specialChars.test(searchValue.trim())) {
 				const response = await axios.get(
-					`https://smashbook-server.onrender.com/users/search/${searchValue.trim()}`,
+					`https://smashbook-server.vercel.app/users/search/${searchValue.trim()}`,
 					{
 						headers: { Authorization: `Bearer ${token}` },
 					}

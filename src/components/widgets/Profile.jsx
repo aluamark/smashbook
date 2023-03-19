@@ -32,7 +32,7 @@ const Profile = ({ isProfile, setProfileLoading }) => {
 		setProfileLoading(true);
 		setLoading(true);
 		const response = await axios.get(
-			`https://smashbook-server.onrender.com/users/${userId}`,
+			`https://smashbook-server.vercel.app/users/${userId}`,
 			{
 				headers: {
 					Authorization: `Bearer ${token}`,
@@ -42,7 +42,7 @@ const Profile = ({ isProfile, setProfileLoading }) => {
 		dispatch(setProfileUser({ profileUser: response.data }));
 
 		const friends = await axios.get(
-			`https://smashbook-server.onrender.com/users/${
+			`https://smashbook-server.vercel.app/users/${
 				isProfile ? userId : _id
 			}/friends`,
 			{
@@ -62,7 +62,7 @@ const Profile = ({ isProfile, setProfileLoading }) => {
 	const handleAddRemoveFriend = async () => {
 		setAddLoading(true);
 		const response = await fetch(
-			`https://smashbook-server.onrender.com/users/${userId}/${_id}`,
+			`https://smashbook-server.vercel.app/users/${userId}/${_id}`,
 			{
 				method: "PATCH",
 				headers: {

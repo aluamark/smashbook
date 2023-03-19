@@ -19,7 +19,7 @@ const FriendList = ({ isProfile, userId, profileLoading }) => {
 	const getUserFriends = async () => {
 		setLoading(true);
 		const friends = await axios.get(
-			`https://smashbook-server.onrender.com/users/${_id}/friends`,
+			`https://smashbook-server.vercel.app/users/${_id}/friends`,
 			{
 				headers: { Authorization: `Bearer ${token}` },
 			}
@@ -35,7 +35,7 @@ const FriendList = ({ isProfile, userId, profileLoading }) => {
 
 	const handleAddRemoveFriend = async (friendId) => {
 		const response = fetch(
-			`https://smashbook-server.onrender.com/users/${_id}/${friendId}`,
+			`https://smashbook-server.vercel.app/users/${_id}/${friendId}`,
 			{
 				method: "PATCH",
 				headers: {

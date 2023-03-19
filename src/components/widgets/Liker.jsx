@@ -14,7 +14,7 @@ const Liker = ({ liker, setShowLikers }) => {
 	const handleAddRemoveFriend = async (friendId) => {
 		setAddLoading(true);
 		const response = await fetch(
-			`https://smashbook-server.onrender.com/users/${user._id}/${friendId}`,
+			`https://smashbook-server.vercel.app/users/${user._id}/${friendId}`,
 			{
 				method: "PATCH",
 				headers: {

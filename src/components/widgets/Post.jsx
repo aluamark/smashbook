@@ -26,7 +26,7 @@ const Post = ({ post }) => {
 	const handleAddComment = async () => {
 		setCommentLoading(true);
 		const response = await fetch(
-			`https://smashbook-server.onrender.com/posts/${post._id}/comment`,
+			`https://smashbook-server.vercel.app/posts/${post._id}/comment`,
 			{
 				method: "PATCH",
 				headers: {
@@ -51,7 +51,7 @@ const Post = ({ post }) => {
 
 	const patchLike = async (postId) => {
 		const response = await fetch(
-			`https://smashbook-server.onrender.com/posts/${postId}/like`,
+			`https://smashbook-server.vercel.app/posts/${postId}/like`,
 			{
 				method: "PATCH",
 				headers: {
