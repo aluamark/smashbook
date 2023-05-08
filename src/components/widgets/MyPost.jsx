@@ -45,7 +45,7 @@ const MyPost = ({ setNewPostLoading, isProfile, profileLoading }) => {
 		});
 
 	const handlePostSubmit = () => {
-		if (post !== "" || image !== null) {
+		if (post.trim() !== "" || image !== null) {
 			const submitPost = async () => {
 				setLoading(true);
 				setNewPostLoading(true);
