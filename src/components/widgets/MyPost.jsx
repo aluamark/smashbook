@@ -8,8 +8,9 @@ import { MdDelete } from "react-icons/md";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { setAllPosts } from "../../state";
+import { PropagateLoader } from "react-spinners";
 
-const MyPost = ({ setNewPostLoading, isProfile }) => {
+const MyPost = ({ setNewPostLoading, isProfile, profileLoading }) => {
 	const dispatch = useDispatch();
 	const dark = useSelector((state) => state.dark);
 	const { _id } = useSelector((state) => state.user);
@@ -98,80 +99,88 @@ const MyPost = ({ setNewPostLoading, isProfile }) => {
 
 	return (
 		<div className="bg-white dark:bg-zinc-800 dark:text-neutral-300 border dark:border-zinc-800 rounded-xl shadow px-4">
-			<ToastContainer />
-			<div className="flex items-center gap-3 border-b border-neutral-300 dark:border-zinc-700">
-				<div className="flex-none">
-					<img
-						src={picturePath}
-						alt={picturePath}
-						className="w-14 h-14 object-cover rounded-full mx-auto"
-					/>
+			{profileLoading ? (
+				<div className="text-center py-20">
+					<PropagateLoader color="#3B82F6" height={10} width={300} />
 				</div>
-
-				<textarea
-					className="w-full my-3 p-3 bg-slate-100 dark:bg-zinc-700 hover:bg-gray-200 dark:hover:bg-zinc-600 outline-none cursor-pointer rounded"
-					type="text"
-					placeholder="What's on your mind?"
-					name="post"
-					value={post}
-					onChange={(e) => setPost(e.target.value)}
-					required
-				/>
-			</div>
-
-			<div className="flex justify-end items-center gap-3">
-				<div className="flex border border-zinc-500 border-dashed items-center rounded">
-					<Dropzone
-						acceptedFiles=".jpg,.jpeg,.png"
-						multiple={false}
-						onDrop={(acceptedFiles) => setImage(acceptedFiles[0])}
-					>
-						{({ getRootProps, getInputProps }) => (
-							<div
-								className="py-1.5 cursor-pointer hover:bg-zinc-300 dark:hover:bg-zinc-700"
-								{...getRootProps()}
-							>
-								<input
-									{...getInputProps()}
-									accept="image/png, image,jpg, image/jpeg,"
-								/>
-								{!image ? (
-									<p className="flex justify-center items-center gap-1 px-3">
-										<span>
-											<TbDragDrop />
-										</span>
-										Photo{" "}
-									</p>
-								) : (
-									<span className="px-3">{image.name}</span>
-								)}
-							</div>
-						)}
-					</Dropzone>
-					{image && (
-						<div
-							onClick={() => setImage(null)}
-							className="border-l border-zinc-500 border-dashed group cursor-pointer p-2 hover:bg-zinc-300 group"
-						>
-							<MdDelete className="fill-red-600 group-hover:fill-red-500 w-5 h-6" />
+			) : (
+				<>
+					<ToastContainer />
+					<div className="flex items-center gap-3 border-b border-neutral-300 dark:border-zinc-700">
+						<div className="flex-none">
+							<img
+								src={picturePath}
+								alt={picturePath}
+								className="w-14 h-14 object-cover rounded-full mx-auto"
+							/>
 						</div>
-					)}
-				</div>
 
-				{loading ? (
-					<button className="bg-blue-600 hover:bg-blue-700 dark:hover:bg-blue-500 text-white text-sm font-semibold rounded m-3 px-10 py-3">
-						<FaSpinner className="mx-3 w-5 h-5 animate-spin" />
-					</button>
-				) : (
-					<button
-						onClick={handlePostSubmit}
-						type="submit"
-						className="bg-blue-600 hover:bg-blue-700 dark:hover:bg-blue-500 text-white text-sm font-semibold rounded my-3 px-10 py-2.5"
-					>
-						POST
-					</button>
-				)}
-			</div>
+						<textarea
+							className="w-full my-3 p-3 bg-slate-100 dark:bg-zinc-700 hover:bg-gray-200 dark:hover:bg-zinc-600 outline-none cursor-pointer rounded"
+							type="text"
+							placeholder="What's on your mind?"
+							name="post"
+							value={post}
+							onChange={(e) => setPost(e.target.value)}
+							required
+						/>
+					</div>
+
+					<div className="flex justify-end items-center gap-3">
+						<div className="flex border border-zinc-500 border-dashed items-center rounded">
+							<Dropzone
+								acceptedFiles=".jpg,.jpeg,.png"
+								multiple={false}
+								onDrop={(acceptedFiles) => setImage(acceptedFiles[0])}
+							>
+								{({ getRootProps, getInputProps }) => (
+									<div
+										className="py-1.5 cursor-pointer hover:bg-zinc-300 dark:hover:bg-zinc-700"
+										{...getRootProps()}
+									>
+										<input
+											{...getInputProps()}
+											accept="image/png, image,jpg, image/jpeg,"
+										/>
+										{!image ? (
+											<p className="flex justify-center items-center gap-1 px-3">
+												<span>
+													<TbDragDrop />
+												</span>
+												Photo{" "}
+											</p>
+										) : (
+											<span className="px-3">{image.name}</span>
+										)}
+									</div>
+								)}
+							</Dropzone>
+							{image && (
+								<div
+									onClick={() => setImage(null)}
+									className="border-l border-zinc-500 border-dashed group cursor-pointer p-2 hover:bg-zinc-300 group"
+								>
+									<MdDelete className="fill-red-600 group-hover:fill-red-500 w-5 h-6" />
+								</div>
+							)}
+						</div>
+
+						{loading ? (
+							<button className="bg-blue-600 hover:bg-blue-700 dark:hover:bg-blue-500 text-white text-sm font-semibold rounded m-3 px-10 py-3">
+								<FaSpinner className="mx-3 w-5 h-5 animate-spin" />
+							</button>
+						) : (
+							<button
+								onClick={handlePostSubmit}
+								type="submit"
+								className="bg-blue-600 hover:bg-blue-700 dark:hover:bg-blue-500 text-white text-sm font-semibold rounded my-3 px-10 py-2.5"
+							>
+								POST
+							</button>
+						)}
+					</div>
+				</>
+			)}
 		</div>
 	);
 };

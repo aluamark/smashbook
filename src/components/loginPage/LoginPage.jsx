@@ -46,7 +46,8 @@ const LoginPage = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const [showModal, setShowModal] = useState(false);
-	const [loading, setLoading] = useState(false);
+	const [loginLoading, setLoginLoading] = useState(false);
+	const [signupLoading, setSignupLoading] = useState(false);
 
 	const successNotif = () =>
 		toast.success("You are now registered.", {
@@ -73,7 +74,7 @@ const LoginPage = () => {
 		});
 
 	const handleLogin = async (values) => {
-		setLoading(true);
+		setLoginLoading(true);
 		const formData = new FormData();
 		for (let value in values) {
 			formData.append(value, values[value]);
@@ -102,11 +103,11 @@ const LoginPage = () => {
 		} catch (error) {
 			throw new Error({ error: error.message });
 		}
-		setLoading(false);
+		setLoginLoading(false);
 	};
 
 	const handleRegister = async (values, onSubmitProps) => {
-		setLoading(true);
+		setSignupLoading(true);
 		const formData = new FormData();
 		for (let value in values) {
 			formData.append(value, values[value]);
@@ -133,7 +134,7 @@ const LoginPage = () => {
 		} catch (error) {
 			throw new Error({ error: error.message });
 		}
-		setLoading(false);
+		setSignupLoading(false);
 	};
 
 	const handleFormSubmit = (values, onSubmitProps) => {
@@ -149,9 +150,9 @@ const LoginPage = () => {
 			<ToastContainer />
 			<div className="h-screen flex flex-col md:flex-row justify-center items-center max-w-screen-xl mx-auto px-10">
 				<div className="p-10 md:p-0 md:pr-10 text-center md:text-left max-w-md">
-					<h1 className="text-blue-600 text-5xl font-bold pb-5">smashbook</h1>
+					<h1 className="text-blue-600 text-5xl font-bold pb-5">sociable</h1>
 					<p className="text-2xl">
-						Connect with friends and the world around you on Smashbook.
+						Connect with friends and the world around you on Sociable.
 					</p>
 				</div>
 				<div className="border bg-white rounded-xl shadow-xl p-5">
@@ -189,7 +190,7 @@ const LoginPage = () => {
 									value={values.password}
 									name="password"
 								/>
-								{loading ? (
+								{loginLoading ? (
 									<button
 										type="submit"
 										className="bg-blue-600 hover:bg-blue-700 text-white font-bold rounded my-3 px-5 py-3"
@@ -375,7 +376,7 @@ const LoginPage = () => {
 												</span>
 
 												<div className="flex-none mb-3">
-													{loading ? (
+													{signupLoading ? (
 														<button
 															type="submit"
 															className="bg-green-600 hover:bg-green-700 text-white text-xl font-bold rounded mt-5 px-16 pt-1 pb-2"

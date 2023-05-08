@@ -15,7 +15,7 @@ const Search = ({ searchValue, setSearchValue, setToggleSearch }) => {
 		<form onSubmit={handleSubmit}>
 			<input
 				type="text"
-				placeholder="Search Smashbook"
+				placeholder="Search Sociable"
 				className="bg-slate-100 dark:bg-zinc-700 outline-none px-5 py-2 rounded-full w-full"
 				value={searchValue}
 				onChange={(e) => setSearchValue(e.target.value)}

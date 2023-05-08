@@ -86,7 +86,7 @@ const Profile = ({ isProfile, setProfileLoading }) => {
 	return (
 		<div className="bg-white dark:bg-zinc-800 dark:text-neutral-300 border dark:border-zinc-800 rounded-xl shadow">
 			{loading ? (
-				<div className="text-center py-5 mb-3">
+				<div className="text-center py-48 mb-3">
 					<PropagateLoader color="#3B82F6" height={10} width={300} />
 				</div>
 			) : (

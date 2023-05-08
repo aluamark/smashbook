@@ -99,7 +99,7 @@ const Navbar = () => {
 										}}
 										className="p-2 hover:bg-zinc-300 dark:hover:bg-zinc-700 text-blue-500 text-xl font-bold cursor-pointer rounded"
 									>
-										smashbook
+										sociable
 									</h1>
 								</Link>
 							)}

@@ -6,7 +6,7 @@ import { setAllPosts } from "../../state";
 import axios from "axios";
 import Post from "./Post";
 
-const Posts = ({ isProfile }) => {
+const Posts = ({ isProfile, profileLoading }) => {
 	const dispatch = useDispatch();
 	const { userId } = useParams();
 	const token = useSelector((state) => state.token);
@@ -55,9 +55,11 @@ const Posts = ({ isProfile }) => {
 
 	return (
 		<div className="pb-3">
-			{loading ? (
-				<div className="text-center py-10">
-					<PropagateLoader color="#3B82F6" height={10} width={300} />
+			{loading || profileLoading ? (
+				<div className="bg-white dark:bg-zinc-800 dark:text-neutral-300 border dark:border-zinc-800 rounded-xl shadow px-4 pt-3">
+					<div className="text-center py-48">
+						<PropagateLoader color="#3B82F6" height={10} width={300} />
+					</div>
 				</div>
 			) : (
 				<div>

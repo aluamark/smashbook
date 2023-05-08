@@ -68,7 +68,7 @@ const FriendList = ({ isProfile, userId, profileLoading }) => {
 	return (
 		<div className="bg-white dark:bg-zinc-800 dark:text-neutral-300 border dark:border-zinc-800 rounded-xl shadow px-4 py-3">
 			{profileLoading || loading ? (
-				<div className="text-center py-5">
+				<div className="text-center py-20">
 					<PropagateLoader color="#3B82F6" height={10} width={300} />
 				</div>
 			) : (

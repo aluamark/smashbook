@@ -29,14 +29,18 @@ const ProfilePage = () => {
 
 				<div className="flex flex-col gap-4 pt-3 md:pt-5 w-full">
 					{_id === userId && (
-						<MyPost setNewPostLoading={setNewPostLoading} isProfile={true} />
+						<MyPost
+							setNewPostLoading={setNewPostLoading}
+							isProfile={true}
+							profileLoading={profileLoading}
+						/>
 					)}
 					{newPostLoading && (
 						<div className="text-center py-10">
 							<PropagateLoader color="#3B82F6" height={10} width={300} />
 						</div>
 					)}
-					<Posts isProfile={true} />
+					<Posts isProfile={true} profileLoading={profileLoading} />
 				</div>
 			</div>
 		</div>

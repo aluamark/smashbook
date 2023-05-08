@@ -24,29 +24,31 @@ const Post = ({ post }) => {
 	const postDate = new Date(post.createdAt);
 
 	const handleAddComment = async () => {
-		setCommentLoading(true);
-		const response = await fetch(
-			`https://smashbook-server.vercel.app/posts/${post._id}/comment`,
-			{
-				method: "PATCH",
-				headers: {
-					Authorization: `Bearer ${token}`,
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({
-					userId: user._id,
-					comment,
-					userPicturePath: user.picturePath,
-					firstName: user.firstName,
-					lastName: user.lastName,
-				}),
-			}
-		);
+		if (comment) {
+			setCommentLoading(true);
+			const response = await fetch(
+				`https://smashbook-server.vercel.app/posts/${post._id}/comment`,
+				{
+					method: "PATCH",
+					headers: {
+						Authorization: `Bearer ${token}`,
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+						userId: user._id,
+						comment,
+						userPicturePath: user.picturePath,
+						firstName: user.firstName,
+						lastName: user.lastName,
+					}),
+				}
+			);
 
-		const data = await response.json();
-		dispatch(setPost({ post: data }));
-		setComment("");
-		setCommentLoading(false);
+			const data = await response.json();
+			dispatch(setPost({ post: data }));
+			setComment("");
+			setCommentLoading(false);
+		}
 	};
 
 	const patchLike = async (postId) => {
@@ -167,9 +169,9 @@ const Post = ({ post }) => {
 					>
 						<FaCommentAlt /> Comment
 					</div>
-					<div className="flex justify-center items-center w-full gap-1 hover:bg-neutral-100 dark:hover:bg-zinc-700 py-1 rounded">
+					{/* <div className="flex justify-center items-center w-full gap-1 hover:bg-neutral-100 dark:hover:bg-zinc-700 py-1 rounded">
 						<IoMdShareAlt className="w-6 h-6" /> Share
-					</div>
+					</div> */}
 				</div>
 			</div>
 
@@ -331,9 +333,9 @@ const Post = ({ post }) => {
 										>
 											<FaCommentAlt /> Comment
 										</div>
-										<div className="flex justify-center items-center w-full gap-1 hover:bg-neutral-100 dark:hover:bg-zinc-700 py-1 rounded">
+										{/* <div className="flex justify-center items-center w-full gap-1 hover:bg-neutral-100 dark:hover:bg-zinc-700 py-1 rounded">
 											<IoMdShareAlt className="w-6 h-6" /> Share
-										</div>
+										</div> */}
 									</div>
 								</div>
 
@@ -370,13 +372,23 @@ const Post = ({ post }) => {
 										onChange={(e) => setComment(e.target.value)}
 									/>
 
-									<button
-										onClick={handleAddComment}
-										type="submit"
-										className="flex bg-zinc-200 dark:bg-zinc-700 hover:bg-zinc-300 dark:hover:bg-zinc-600 cursor-pointer p-2 rounded-full gap-3"
-									>
-										<MdSend className="fill-blue-500 w-5 h-5 rounded-full" />
-									</button>
+									{commentLoading ? (
+										<button
+											onClick={handleAddComment}
+											type="submit"
+											className="flex bg-zinc-200 dark:bg-zinc-700 hover:bg-zinc-300 dark:hover:bg-zinc-600 cursor-pointer p-2 rounded-full gap-3"
+										>
+											<FaSpinner className="fill-blue-500 w-5 h-5 rounded-full animate-spin" />
+										</button>
+									) : (
+										<button
+											onClick={handleAddComment}
+											type="submit"
+											className="flex bg-zinc-200 dark:bg-zinc-700 hover:bg-zinc-300 dark:hover:bg-zinc-600 cursor-pointer p-2 rounded-full gap-3"
+										>
+											<MdSend className="fill-blue-500 w-5 h-5 rounded-full" />
+										</button>
+									)}
 								</div>
 							</div>
 						</div>
